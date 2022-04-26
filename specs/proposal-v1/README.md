@@ -1,11 +1,11 @@
 # APF Proposal for v1
 
 This proposal will include the following:
- - Sectors
- - Metadata sector
- - Opcodes
- - Confirming last action
- - Data sectors
+  - [x] Sectors
+  - [x] Metadata sector
+  - [ ] Opcodes
+  - [ ] Confirming last action
+  - [ ] Data sectors
 
 ## Sectors
 
