@@ -49,14 +49,14 @@ The metadata sector starts from `0x0` to whenever the sector footer is reached.
 ### Structure
 
 ```c
-typedef struct apfMetadata
+typedef struct apf_metadata
 {
     unsigned char major_version;
     unsigned char minor_version;
     
     unsigned char checksum;
     unsigned char eof_opcode_address;
-} apfMetadata;
+} apf_metadata;
 ```
 
 ## Opcodes
