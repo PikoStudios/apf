@@ -3,13 +3,14 @@
 This proposal will include the following:
   - [x] Sectors
   - [x] Metadata sector
-  - [ ] Opcodes
+  - [x] Opcodes
   - [ ] Confirming last action
   - [ ] Data sectors
 
 ## Sectors
 
-All sectors end with a sector footer. The type of footer depends on the data. In v1, the only type of sector footer will be for data sectors and the metadata sector. **All section footer must be confirmed by the confirm opcode**
+All sectors end with a sector footer. The type of footer depends on the data.
+**All section footerw must be confirmed by the confirm opcode**
 
 ### Example
 `[Metadata] 0xFE 0xA6 [Data for the first frame] 0xD2 0xA6`
@@ -44,3 +45,26 @@ The metadata sector starts from `0x0` to whenever the sector footer is reached.
 0x06 - 0xEF
 0x07 - 0xA6
 ```
+
+### Structure
+
+```c
+typedef struct apfMetadata
+{
+    unsigned char major_version;
+    unsigned char minor_version;
+    
+    unsigned char checksum;
+    unsigned char eof_opcode_address;
+} apfMetadata;
+```
+
+## Opcodes
+
+| Hexadecimal | Action |
+| ------------- | ------------- |
+| `0xA6` | Confirm last opcode  |
+| `0xEF` | EOF |
+| `0xFE` | End Metadata Sector |
+| `0xD2` | End Data Sector |
+| `0xCF` | End Checksum Sector |
