@@ -6,7 +6,7 @@ This proposal will include the following:
   - [x] Opcodes
   - [x] Checksum Sector
   - [x] Data sectors
-  - [ ] Error Detection/Correction
+  - [ ] Error Detection and Correction
 
 ## Sectors
 
@@ -115,3 +115,6 @@ typedef struct apf_data_sector
     unsigned char data;
 }
 ```
+
+## Error Detection and Correction
+
