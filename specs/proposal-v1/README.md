@@ -4,8 +4,8 @@ This proposal will include the following:
   - [x] Sectors
   - [x] Metadata sector (Header)
   - [x] Opcodes
-  - [ ] Checksum Sector
-  - [ ] Data sectors
+  - [x] Checksum Sector
+  - [x] Data sectors
   - [ ] Error Detection/Correction
 
 ## Sectors
