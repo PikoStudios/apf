@@ -9,11 +9,10 @@ This proposal will include the following:
 
 ## Sectors
 
-All sectors end with a sector footer. The type of footer depends on the data.
-**All section footerw must be confirmed by the confirm opcode**
+All sectors start with sector starters
 
 ### Example
-`[Metadata] 0xFE 0xA6 [Data for the first frame] 0xD2 0xA6`
+`0xFE [Metadata] [Data for the first frame] 0xD2`
 
 ### Plans
 
@@ -54,7 +53,7 @@ typedef struct apf_metadata
     unsigned char major_version;
     unsigned char minor_version;
     
-    unsigned char checksum;
+    unsigned char use_checksum;
     unsigned char eof_opcode_address;
 } apf_metadata;
 ```
@@ -65,6 +64,10 @@ typedef struct apf_metadata
 | ------------- | ------------- |
 | `0xA6` | Confirm last opcode  |
 | `0xEF` | EOF |
-| `0xFE` | End Metadata Sector |
-| `0xD2` | End Data Sector |
-| `0xCF` | End Checksum Sector |
+| `0xFE` | Start Metadata Sector |
+| `0xD0` | Start Data Sector |
+| `0xD1` | Start Data Parity Sector |
+| `0xDA` | Start Row Parity Sector |
+| `0xDB` | Start Column Parity Sector |
+| `0xDC` | Start Final Parity Sector |
+| `0xCF` | Start Checksum Sector |
