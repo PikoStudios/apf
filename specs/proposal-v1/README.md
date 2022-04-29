@@ -112,9 +112,22 @@ typedef struct apf_data_sector
         unsigned char final_parity;
     } parity;
 
-    unsigned char data;
+    unsigned char** data;
 }
 ```
 
 ## Error Detection and Correction
 
+Due to the opcodes being only one bit, there is a good chance a frame could include any of the opcodes. To prevent unexpected spliting of sectors, the validity of each frame (`Data Sector`) has to be verified using two groups of parity bits and one final parity bit. This gives us a hamming distance of 4. Let's go through the method for error detection.
+
+Before a `Data Sector` there will be a `Data Parity Sector`. This sector will include 3 different inner-sectors. The 3 inner-sections are the `Row Parity Sector`, `Column Parity Sector` and the `Final Parity Sector`.
+
+### Finding Parity
+
+```c
+unsigned char row_parity(unsigned char** data)
+{
+    unsigned int offset = 0;
+    
+    // WIP
+```
