@@ -83,9 +83,35 @@ The checksum sector should be placed after all of the data sectors, **but depend
 
 The `[0x01]` is the toggle to enable the **checksum** sector.
 
+### Structure
+
+```c
+typedef uint32_t apf_checksum;
+```
+
 ## Data Sector
 
 The data sector is really made up of two sectors. the `Data Parity Sector` and the actual `Data Sector`. The `Data Parity Sector` goes before the `Data Sector ` and contains information for error detection. The `Data Sector` is made up of raw `PNG` bytes.
 
 There is no way to specify which frame a `Data Sector` will be. The way frames are ordered is depending on the actual location relative to other data sectors. **For Example**, the first `Data Sector` will be the first frame and the third `Data Sector` will be the third frame.
 
+### Example
+
+`0xD1 [..parity information..] 0xD0 [..data sector..]`
+
+### Structure
+
+```c
+typedef struct apf_data_sector
+{
+    struct parity
+    {
+        unsigned char** row_parity;
+        unsigned char** column_parity;
+        
+        unsigned char final_parity;
+    } parity;
+
+    unsigned char data;
+}
+```
